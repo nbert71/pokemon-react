@@ -1,7 +1,28 @@
+$red: #F44336;
+$pink: #E91E63;
+$purple: #9C27B0;
+$deep-purple: #673AB7;
+$indigo: #3F51B5;
+$blue: #2196F3;
+$light-blue: #03A9F4;
+$cyan: #00BCD4;
+$teal: #009688;
+$green: #4CAF50;
+$light-green: #8BC34A;
+$lime: #CDDC39;
+$yellow: #FFEB3B;
+$amber: #FFC107;
+$orange: #FF9800;
+$deep-orange: #FF5722;
+$brown: #795548;
+$grey: #9E9E9E;
+$blue-grey: #607D8B;
+$black: #000;
+
 .pokemonshow {
     --seperator-width: 2px;
     margin: 10px;
-    background-color: rgb(0,0,0,0.2);
+    background-color: rgb(0, 0, 0, 0.2);
     display: inline-flex;
     max-width: 500px;
     padding: 1rem 0;
@@ -10,9 +31,28 @@
         padding: 0.4rem;
         width: 50%;
         border-right: calc(var(--seperator-width)/2) solid white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
 
         img {
-            width: 100%;
+            width: 226.22px;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+        }
+
+        button {
+            width: 50%;
+            background-color: $light-blue;
+            color: white;
+            border: 1px solid white;
+            padding: 6px 0;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+
         }
     }
 
@@ -65,23 +105,29 @@
                 }
             }
         }
+
         .stats {
             p {
                 font-weight: 600;
             }
         }
-        .talents {
-            display: flex;
-            flex-wrap: wrap;
 
+        .talents {
+            font-size: 0.8rem;
             p {
                 margin-right: 0.2rem;
             }
 
-            span:not(:last-child)::after {
-                content: ",";
-                margin-right: 0.25rem;
+            .talents-wrapper {
+                width: 100%;
+                height: 2.5rem;
+                span:not(:last-child)::after {
+                    content: ",";
+                    margin-right: 0.25rem;
+                }
             }
+
+
         }
     }
 }
