@@ -59,7 +59,10 @@ function PokemonShow() {
 										setIsShinyImage(!isShinyImage)
 									}
 								/>
-                                <img src={nextPokemon.sprites.regular} style={{display: 'none'}} />
+								<img
+									src={nextPokemon.sprites.regular}
+									style={{ display: "none" }}
+								/>
 								<button onClick={handleClick}>Click !</button>
 							</>
 						)}
@@ -69,15 +72,29 @@ function PokemonShow() {
 						<p className="category">{pokemon.category}</p>
 						<div className="egg_groups">
 							<p>Groupes :</p>
-							{pokemon.egg_groups &&
-								pokemon.egg_groups.map((g) => (
-									<span key={g}>{g}</span>
-								))}
+                            <div className="egg_groups-wrapper">
+                                {pokemon.egg_groups &&
+                                    pokemon.egg_groups.map((g) => (
+                                        <span key={g}>{g}</span>
+                                    ))}
+                            </div>
 						</div>
 						<div className="types">
 							<p>Types :</p>
 							<div className="types_container">
 								{pokemon.types.map((type) => (
+									<img
+										key={type.name}
+										src={type.image}
+										title={type.name}
+									/>
+								))}
+							</div>
+							<div
+								className="types_container"
+								style={{ display: "none" }}
+							>
+								{nextPokemon.types.map((type) => (
 									<img
 										key={type.name}
 										src={type.image}
@@ -92,13 +109,15 @@ function PokemonShow() {
 						</div>
 						<div className="talents">
 							<p>Attaques :</p>
-                            
-                            <div className="talents-wrapper">
-                                {pokemon.talents &&
-                                    pokemon.talents.map((talent) => (
-                                        <span key={talent.name}>{talent.name}</span>
-                                    ))}
-                            </div>
+
+							<div className="talents-wrapper">
+								{pokemon.talents &&
+									pokemon.talents.map((talent) => (
+										<span key={talent.name}>
+											{talent.name}
+										</span>
+									))}
+							</div>
 						</div>
 					</div>
 				</div>
