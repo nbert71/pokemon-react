@@ -2,7 +2,7 @@ import "./PokemonShow.scss";
 import { useState, useEffect } from "react";
 import PokemonStats from "./PokemonStats";
 
-function PokemonShow() {
+function PokemonShow(props) {
 	const [pokemon, setPokemon] = useState(null);
 	const [nextPokemon, setNextPokemon] = useState(null);
 	const [imageLoaded, setImageLoaded] = useState(false);
@@ -13,7 +13,7 @@ function PokemonShow() {
 		fetch(`https://api-pokemon-fr.vercel.app/api/v1/pokemon/${id}`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
+                console.log(data);
 				setPokemon(data);
 			});
 	};
@@ -23,8 +23,16 @@ function PokemonShow() {
 		fetch(`https://api-pokemon-fr.vercel.app/api/v1/pokemon/${id}`)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
+                console.log(data);
 				setNextPokemon(data);
+			});
+	};
+
+	const fetchDataById = (id) => {
+		fetch(`https://api-pokemon-fr.vercel.app/api/v1/pokemon/${id}`)
+			.then((response) => response.json())
+			.then((data) => {
+				setPokemon(data);
 			});
 	};
 
@@ -34,9 +42,14 @@ function PokemonShow() {
 	};
 
 	useEffect(() => {
-		fetchData1();
-		fetchData2();
-	}, []);
+		if (props.searchedId == -1) {
+			fetchData1();
+			fetchData2();
+		} else {
+			fetchDataById(props.searchedId);
+			fetchData2();
+		}
+	}, [props.searchedId]);
 
 	return (
 		<>
@@ -72,12 +85,12 @@ function PokemonShow() {
 						<p className="category">{pokemon.category}</p>
 						<div className="egg_groups">
 							<p>Groupes :</p>
-                            <div className="egg_groups-wrapper">
-                                {pokemon.egg_groups &&
-                                    pokemon.egg_groups.map((g) => (
-                                        <span key={g}>{g}</span>
-                                    ))}
-                            </div>
+							<div className="egg_groups-wrapper">
+								{pokemon.egg_groups &&
+									pokemon.egg_groups.map((g) => (
+										<span key={g}>{g}</span>
+									))}
+							</div>
 						</div>
 						<div className="types">
 							<p>Types :</p>

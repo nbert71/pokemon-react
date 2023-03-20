@@ -1,0 +1,59 @@
+@use '../assets/colors' as colors;
+
+.search-container {
+    $padding: 1rem;
+
+    background-color: rgb(0, 0, 0, 0.2);
+    padding: $padding;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+
+    .input-container {
+        padding: 0.2rem 0.5rem; 
+        background-color: white;
+        border-radius: 0.5rem;
+        display: flex;
+        margin: 1rem 0;
+
+        input.search-input {
+            flex-grow: 1;
+            background-color: transparent;
+            border: 0;
+            font-size: 1rem;
+            
+            &:focus-visible{
+                outline: none;
+            }
+
+        }
+        .search-icon {
+            max-height: 1.5em;
+            aspect-ratio: 1/1;
+        }
+    }
+
+
+
+    ul.suggestions { 
+        list-style-type: none;
+        background: white;
+        border-radius: 0.5rem;
+        overflow-y: scroll;
+        max-height: 15rem;
+
+        li {
+            padding: 0.4rem 0.6rem;
+            background-color: white;
+
+            &:hover {
+                background-color: colors.$light-blue;
+                color: white;
+                transition: background-color 100ms;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
